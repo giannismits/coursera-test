@@ -1,54 +1,33 @@
 <!doctype html>
-<html lang="en" ng-app="shoppingListApp">
+<html lang="en" ng-app="NarrowItDownApp">
   <head>
-    <title>Shopping List Check Off</title>
+    <title>Narrow Down Your Menu Choice</title>
     <script src="angular.min.js"></script>
     <script src="app.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="styles/bootstrap.min.css">
-    <style>
-      .emptyMessage {
-        font-weight: bold;
-        color: red;
-        font-size: 1.2em;
-      }
-      li {
-        margin-bottom: 7px;
-        font-size: 1.2em;
-      }
-      li > button {
-        margin-left: 6px;
-      }
-      button > span {
-        color: green;
-      }
-    </style>
+    <link rel="stylesheet" href="styles/styles.css">
   </head>
-<body>
-  <div class="container">
-  <h1>Shopping List Check Off</h1>
+<body ng-controller="NarrowItDownController as menu">
+   <div class="container" >
+    <h1>Narrow Down Your Chinese Menu Choice</h1>
 
-  <div class="row" ng-controller="shoppingListFull as list1">
-    <!-- To Buy List -->
-    <div class="col-md-6">
-     <h2>To Buy:</h2>
-     <ul>
-       <li ng-repeat="item in list1.items">Buy {{item.quantity}} {{item.name}} <button class="btn btn-default" ng-click="list1.removeItem($index)"><span class="glyphicon glyphicon-ok"></span> Bought</button></li>
-       <!-- <li>Buy 10 cookies <button class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> Bought</button></li> -->
-     </ul>
-     <div class="emptyMessage">{{list1.errorMessage}}</div>
+    <div class="form-group">
+      <input ng-model="order" type="text" placeholder="search term" class="form-control">
+    </div>
+    <div class="form-group narrow-button">
+      <button ng-click="menu.search(order)" class="btn btn-primary">Narrow It Down For Me!</button>
     </div>
 
-    <!-- Already Bought List -->
-    <div class="col-md-6" ng-controller="shoppingListEmpty as list2">
-     <h2>Already Bought:</h2>
-     <ul>
-       <li  ng-repeat="item in list2.items">{{item.quantity}} {{item.name}}</li>
-     </ul>
-     <div ng-hide="list1.check()" class="emptyMessage">Nothing bought yet</div>
-    </div>
+    <!-- Bonus loader (see Bonus section of the assignment) -->
+    <items-loader-indicator></items-loader-indicator>
+
+    <!-- found-items should be implemented as a component -->
+
+    <found-items id="menuService" fund-items="menu" items="menu.items"  on-remove="menu.removeItem($index)"></found-items>
+  
+
   </div>
-</div>
 
 </body>
 </html>
