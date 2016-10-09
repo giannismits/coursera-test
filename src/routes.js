@@ -26,10 +26,19 @@ function RouterConfig($stateProvider,$urlRouterProvider){
     }
   })
 
-  .state('categ.menu',{
+  .state('menu',{
     url:'/menu/{itemId}',
     templateUrl:'src/template/template.menuitems.html',
     controller:'menuController as menu',
+    resolve:{
+      item:['$stateParams','restaurantService',function($stateParams,restaurantService){
+        return restaurantService.getItems().
+        then(function (itemCategories){
+
+            return itemCategories[$stateParams.itemId].short_name;
+        });
+      }]
+    }
   });
 }
 

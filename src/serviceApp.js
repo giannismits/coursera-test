@@ -4,10 +4,10 @@
 angular.module('MenuApp')
 .service('restaurantService',restaurantService);
 
-restaurantService.$inject=['$http'];
-function restaurantService($http){
+restaurantService.$inject=['$http','$q'];
+function restaurantService($http,$q){
   var service=this;
-
+var deffered=$q.defer();
 service.getItems=function(){
   var categories=[];
   var response=$http({
@@ -24,7 +24,8 @@ service.getItems=function(){
    }).catch(function(error){
     console.log("something gone terribly wrong!!");
   });
-  return categories;
+  deffered.resolve(categories);
+  return deffered.promise;
  };
 }
 })();
