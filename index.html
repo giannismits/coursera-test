@@ -1,33 +1,28 @@
-<!doctype html>
-<html lang="en" ng-app="NarrowItDownApp">
+<!DOCTYPE html>
+<html ng-app="MenuApp">
   <head>
-    <title>Narrow Down Your Menu Choice</title>
-    <script src="angular.min.js"></script>
-    <script src="app.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="styles/bootstrap.min.css">
-    <link rel="stylesheet" href="styles/styles.css">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>module 4</title>
   </head>
-<body ng-controller="NarrowItDownController as menu">
-   <div class="container" >
-    <h1>Narrow Down Your Chinese Menu Choice</h1>
+  <body>
+    <h1>Welcome to our Restaurant</h1>
 
-    <div class="form-group">
-      <input ng-model="order" type="text" placeholder="search term" class="form-control">
-    </div>
-    <div class="form-group narrow-button">
-      <button ng-click="menu.search(order)" class="btn btn-primary">Narrow It Down For Me!</button>
-    </div>
+    <ui-view></ui-view>
 
-    <!-- Bonus loader (see Bonus section of the assignment) -->
-    <items-loader-indicator></items-loader-indicator>
+    <!-- Libraries -->
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-ui-router.min.js"></script>
 
-    <!-- found-items should be implemented as a component -->
-
-    <found-items id="menuService" fund-items="menu" items="menu.items"  on-remove="menu.removeItem($index)"></found-items>
-  
-
-  </div>
-
-</body>
+    <!-- modules -->
+    <script src="src/app.module.js"></script>
+    <!-- routes -->
+    <script src="src/routes.js"></script>
+    <!-- module artifacts -->
+    <script src="src/serviceApp.js"></script>
+    <script src="src/maincontroller.js"></script>
+    <script src="src/menuitems.component.js"></script>
+    <script src="src/category.component.js"></script>
+    <script src="src/menucontroller.js"></script>
+  </body>
 </html>
