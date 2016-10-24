@@ -1,0 +1,78 @@
+<div class="container">
+<legend>Registration</legend>
+<form name='regForm' novalidate>
+  <span>First Name: </span><br>
+  <input type="text" name="firstName" placeholder="First Name"
+    ng-model="reg.firstName"
+    required
+    minlength="4"
+    ng-maxlength="10">
+    {{reg.firstName }}
+    <span
+      ng-if="(regForm.firstName.$error.minlength || regForm.firstName.$error.required) && regForm.firstName.$touched">
+     First Name must be at least 4 characters long
+    </span>
+    <span ng-if="regForm.firstName.$error.maxlength && regForm.firstName.$touched">
+      Fisrt Name must not be longer than 10 characters
+    </span>
+    <br>
+
+    <span>Last Name: </span><br>
+    <input type="text" name="LastName" placeholder="Last Name"
+      ng-model="reg.LastName"
+      required
+      minlength="4"
+      ng-maxlength="10">
+      {{ reg.LastName }}
+      <span
+        ng-if="(regForm.LastName.$error.minlength || regForm.LastName.$error.required) && regForm.LastName.$touched">
+        Last Name must be at least 4 characters long
+      </span>
+      <span ng-if="regForm.LastName.$error.maxlength && regForm.LastName.$touched">
+        Last Name must not be longer than 10 characters
+      </span>
+      <br>
+
+    <span>E-Mail: </span><br>
+  <input type="email" name="email" placeholder="Email"
+    ng-model="reg.email"
+    required>
+    <span ng-if="regForm.email.$invalid && regForm.email.$touched">
+      Must be a valid email address: handle@domain format
+    </span>
+    <br>
+    <span>Phone Number: </span><br>
+  <input type="text" name="phone" placeholder="Phone ###-###-####"
+    ng-model="reg.phone"
+    pattern="(\d{3})-(\d{3})-(\d{4})">
+    <span ng-if="regForm.phone.$invalid && regForm.phone.$touched">
+      Phone must be in the format ###-###-####.
+    </span>
+    <br>
+
+    <span>Favorite Dish: </span><br>
+    <input type="text" name="DishName" placeholder="Dish Short Name"
+      ng-model="reg.DishName"
+      required
+      minlength="1"
+      ng-maxlength="4">
+      {{reg.DishName }}
+      <span
+        ng-if="(reg.DishName.$error.minlength || regForm.DishName.$error.required) && regForm.DishName.$touched">
+        Dish Short Name must be at least 2 characters long
+      </span>
+      <span ng-if="regForm.DishName.$error.maxlength && regForm.DishName.$touched">
+        Dish Short Name must not be longer than 4 characters
+      </span>
+      <br>
+
+  <button
+    ng-disabled="regForm.$invalid"
+    ng-click="reg.submit(reg.firstName,reg.LastName,reg.email,reg.phone,reg.DishName)">Submit</button>
+
+    <div style="margin-top: 10px;" ng-if="reg.saved">
+      Your information has been saved
+    </div>
+</form>
+
+   </div>

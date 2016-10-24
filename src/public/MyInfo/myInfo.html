@@ -1,0 +1,11 @@
+<div class="container">
+<h1 id="customerTitle">Customer Information </h1>
+<div ng-if="reg.infocustomer[0].name">
+<span id="custinfo">Fist Name: </span>{{reg.infocustomer[0].name}}<br>
+<span id="custinfo">Last Name: </span>{{reg.infocustomer[0].lastname}}<br>
+<span id="custinfo">E-mail: </span>{{reg.infocustomer[0].email}}<br>
+<span id="custinfo">Phone Number: </span>{{reg.infocustomer[0].phone}}<br>
+<span id="custinfo">Favorite Dish: </span>{{reg.infocustomer[0].favDish}}<br>
+</div>
+<div ng-if="!reg.infocustomer[0].name">No registration please  <a ui-sref="public.reg">Sing Up!!</a></div>
+</div>
